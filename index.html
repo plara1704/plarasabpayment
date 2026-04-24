@@ -1,0 +1,182 @@
+# plarasabpayment
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinkjulieland | Web Design & Full Service</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'blue-main': '#86cbea',
+                        'blue-deep': '#2755ab',
+                        'pink-main': '#ff66a0',
+                        'brown-600': '#5c3d26',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(135deg, #fff9fb 0%, #fcecf2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Splash Screen (หน้าสีฟ้า) --- */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, #eef7fc 0%, #86cbea 100%);
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            items: center;
+            justify-content: center;
+            transition: all 0.8s ease-in-out;
+        }
+        
+        .pulse-btn {
+            animation: pulse-ring 2.5s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(134, 203, 234, 0.6); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(134, 203, 234, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(134, 203, 234, 0); }
+        }
+
+        /* --- Main Content (หน้าสีชมพู) --- */
+        #main-content {
+            display: none; /* ซ่อนไว้ก่อน */
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            z-index: 10;
+        }
+
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 20px 50px -10px rgba(244, 114, 182, 0.15);
+        }
+
+        @keyframes dash-animation { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -24; } }
+        .animate-dash { animation: dash-animation 1s linear infinite; }
+        
+        .anim-pulse { animation: pulse-soft 3s ease-in-out infinite; }
+        @keyframes pulse-soft { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+    </style>
+</head>
+<body class="flex flex-col items-center">
+
+    <div id="splash-screen">
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="w-32 h-32 bg-white rounded-3xl shadow-xl flex items-center justify-center mb-6 border-4 border-white overflow-hidden">
+                <img src="logo1.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/200x200/86cbea/ffffff?text=Pai'">
+            </div>
+            
+            <h1 class="text-white text-4xl font-bold mb-2 drop-shadow-md">Pinkjulieland</h1>
+            <p class="text-white text-sm tracking-widest uppercase italic mb-8">Web Design | Full Service</p>
+
+            <button onclick="enterShop()" class="pulse-btn w-20 h-20 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer hover:bg-white/70 transition shadow-lg group">
+                <i class="fa-solid fa-play text-blue-deep text-3xl ml-1"></i>
+            </button>
+            <p class="text-white mt-6 text-sm font-medium">กดปุ่มเพื่อเข้าสู่ร้านจูนะคะ</p>
+        </div>
+    </div>
+
+    <div id="main-content" class="max-w-[420px] w-full py-6 px-4 space-y-5">
+        
+        <div class="text-center pt-2 pb-2">
+            <h1 class="text-2xl font-bold text-[#ff66a0] flex items-center justify-center gap-2">
+                Pinkjulieland
+            </h1>
+            <p class="text-sm font-medium text-gray-500 mt-1">Payment & Checkout</p>
+        </div>
+
+        <div class="glass-card rounded-[40px] p-3 relative">
+            <div class="relative p-2 rounded-[36px]">
+                <svg class="absolute inset-0 w-full h-full pointer-events-none">
+                    <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="34" fill="none" stroke="#f472b6" stroke-width="2.5" stroke-dasharray="12 12" class="animate-dash" />
+                </svg>
+                <div class="rounded-[28px] overflow-hidden border-[4px] border-white shadow-sm">
+                    <img src="https://i.postimg.cc/yYXXLQnm/att-YZKp-Oou02U1m01U9E7IVQ5yixn-Mty-Ak-Ll-S0rpd-OVE00.jpg" alt="Payment QR" class="w-full h-auto">
+                </div>
+            </div>
+
+            <div class="p-4 pt-6 text-center">
+                <p class="text-[15px] font-medium text-gray-700">
+                    เลขบัญชีตามนี้เลยค่า <br>
+                    ชื่อบัญชี <span class="text-pink-500 font-bold px-2 bg-pink-50 rounded-lg">อนุสรา</span> เท่านั้นน้า!!
+                </p>
+
+                <div class="mt-6 bg-gradient-to-br from-[#bc9680] to-[#8b5e3c] rounded-[24px] p-5 text-left cursor-pointer shadow-lg" onclick="copyText('2221396513', this)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-white font-bold bg-white/20 px-3 py-1 rounded-full text-xs">KBank</span>
+                        <span class="bg-white text-[#8b5e3c] text-[10px] px-3 py-1 rounded-full font-bold">คัดลอก</span>
+                    </div>
+                    <div class="text-white/80 text-[10px]">กสิกรไทย (อนุสรา)</div>
+                    <div class="text-white font-bold text-xl tracking-widest">2221396513</div>
+                </div>
+
+                <div class="mt-4 bg-gradient-to-br from-pink-300 to-pink-400 rounded-[24px] p-5 text-left cursor-pointer shadow-lg" onclick="copyText('0943947154', this)">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-white font-bold bg-white/20 px-3 py-1 rounded-full text-xs">TrueMoney</span>
+                        <span class="bg-white text-pink-500 text-[10px] px-3 py-1 rounded-full font-bold">คัดลอก</span>
+                    </div>
+                    <div class="text-white/80 text-[10px]">ทรูมันนี่ (อนุสรา)</div>
+                    <div class="text-white font-bold text-xl tracking-widest">0943947154</div>
+                </div>
+
+                <div class="mt-6 bg-pink-50 border-2 border-dashed border-pink-200 rounded-2xl p-4 text-left">
+                    <p class="text-[11px] text-gray-600">
+                        <span class="text-pink-500 font-bold">เฉพาะคนโอน Wallet</span> รบกวนบวกเพิ่ม 20 บาทนะคะ
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-10 bg-gray-800 text-white px-6 py-2 rounded-full opacity-0 transition-opacity duration-300 pointer-events-none">คัดลอกแล้วค่า ✨</div>
+
+    <script>
+        // ฟังก์ชันสลับหน้า
+        function enterShop() {
+            const splash = document.getElementById('splash-screen');
+            const main = document.getElementById('main-content');
+            
+            splash.style.opacity = '0';
+            splash.style.visibility = 'hidden';
+            
+            main.style.display = 'block';
+            setTimeout(() => {
+                main.style.opacity = '1';
+            }, 50);
+        }
+
+        // ฟังก์ชันคัดลอกเลขบัญชี
+        function copyText(text, el) {
+            navigator.clipboard.writeText(text);
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+        }
+    </script>
+</body>
+</html>
+
